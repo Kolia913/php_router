@@ -1,0 +1,16 @@
+{
+  "name": "kolia913/workopia-php",
+  "description": "Job listing application",
+  "authors": [
+    {
+      "name": "Mykola Balii",
+      "email": "mykola.i.balii@gmail.com"
+    }
+  ],
+  "autoload": {
+    "psr-4": {
+      "Framework\\": "Framework/",
+      "App\\": "App/"
+    }
+  }
+}
