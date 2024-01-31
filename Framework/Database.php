@@ -9,14 +9,14 @@ use Exception;
 class Database
 {
     public $conn;
+    public static $instance;
 
     /**
      * Constructor for Database class
      * 
      * @param array $config
      */
-
-    public function __construct($config)
+    protected function __construct($config)
     {
         $dsn = "mysql:host={$config['host']};port={$config['port']};dbname={$config['dbname']}";
 
@@ -30,6 +30,21 @@ class Database
         } catch (PDOException $e) {
             throw new Exception("Database connection failed: {$e->getMessage()}");
         }
+    }
+
+    /**
+     * Get database instance
+     *
+     * @param array $config
+     * @return Database
+     */
+    public static function getInstance($config)
+    {
+        if (!isset(self::$instance)) {
+            self::$instance = new static($config);
+        }
+
+        return self::$instance;
     }
 
     /**
